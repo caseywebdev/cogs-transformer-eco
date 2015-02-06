@@ -21,18 +21,18 @@ var getFileHash = function (filePath) {
 
 var FIXTURES = {
   'test/config.json': {
-    'test/input.txt': {
-      path: 'test/input.txt',
-      buffer: fs.readFileSync('test/output.txt'),
-      hash: getFileHash('test/output.txt'),
+    'test/input.eco': {
+      path: 'test/input.eco',
+      buffer: fs.readFileSync('test/output.js'),
+      hash: getFileHash('test/output.js'),
       requires: [{
-        path: 'test/input.txt',
-        hash: getFileHash('test/input.txt')
+        path: 'test/input.eco',
+        hash: getFileHash('test/input.eco')
       }],
       links: [],
       globs: []
     },
-    'test/error.txt': Error
+    'test/error.eco': Error
   }
 };
 
@@ -53,6 +53,7 @@ Object.keys(FIXTURES).forEach(function (configPath) {
         it(expectsError ? 'fails' : 'succeeds', function (done) {
           getBuild(inputPath, function (er, build) {
             if (expectsError) expect(er).to.be.an.instanceOf(Error);
+            else if (er) return done(er);
             else expect(build).to.deep.equal(expected);
             done();
           });
