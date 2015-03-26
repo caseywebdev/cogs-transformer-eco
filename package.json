@@ -1,6 +1,6 @@
 {
   "name": "cogs-transformer-eco",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Casey Foster <c@sey.me>",
   "description": "An eco transformer for Cogs.",
   "license": "MIT",
@@ -9,12 +9,12 @@
     "url": "https://github.com/caseywebdev/cogs-transformer-eco"
   },
   "dependencies": {
-    "cogs-transformer-6to5": "1.0.0",
+    "cogs-transformer-babel": "1.0.7",
     "eco": "1.1.0-rc-3",
-    "underscore": "1.7.0"
+    "underscore": "1.8.2"
   },
   "devDependencies": {
-    "cogs-test-helper": "1.0.0"
+    "cogs-test-helper": "1.0.3"
   },
   "scripts": {
     "test": "cogs-test-helper test/test.js"
