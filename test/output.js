@@ -10,7 +10,7 @@
   module.exports = function (__obj) {
     if (!__obj) __obj = {};
     var __out = [],
-        __capture = function (callback) {
+        __capture = function __capture(callback) {
       var out = __out,
           result;
       __out = [];
@@ -19,7 +19,7 @@
       __out = out;
       return __safe(result);
     },
-        __sanitize = function (value) {
+        __sanitize = function __sanitize(value) {
       if (value && value.ecoSafe) {
         return value;
       } else if (typeof value !== "undefined" && value != null) {
