@@ -1,11 +1,17 @@
-(function (factory) {
-  if (typeof define === "function" && define.amd) {
-    define(["exports", "module"], factory);
-  } else if (typeof exports !== "undefined" && typeof module !== "undefined") {
+(function (global, factory) {
+  if (typeof define === 'function' && define.amd) {
+    define(['exports', 'module'], factory);
+  } else if (typeof exports !== 'undefined' && typeof module !== 'undefined') {
     factory(exports, module);
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, mod);
+    global.input = mod.exports;
   }
-})(function (exports, module) {
-  "use strict";
+})(this, function (exports, module) {
+  'use strict';
 
   module.exports = function (__obj) {
     if (!__obj) __obj = {};
@@ -15,17 +21,17 @@
           result;
       __out = [];
       callback.call(this);
-      result = __out.join("");
+      result = __out.join('');
       __out = out;
       return __safe(result);
     },
         __sanitize = function __sanitize(value) {
       if (value && value.ecoSafe) {
         return value;
-      } else if (typeof value !== "undefined" && value != null) {
+      } else if (typeof value !== 'undefined' && value != null) {
         return __escape(value);
       } else {
-        return "";
+        return '';
       }
     },
         __safe,
@@ -35,7 +41,7 @@
       if (value && value.ecoSafe) {
         return value;
       } else {
-        if (!(typeof value !== "undefined" && value != null)) value = "";
+        if (!(typeof value !== 'undefined' && value != null)) value = '';
         var result = new String(value);
         result.ecoSafe = true;
         return result;
@@ -43,15 +49,15 @@
     };
     if (!__escape) {
       __escape = __obj.escape = function (value) {
-        return ("" + value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+        return ('' + value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
       };
     }
     (function () {
       (function () {
-        __out.push("<h1>hello</h1>\n");
+        __out.push('<h1>hello</h1>\n');
       }).call(this);
     }).call(__obj);
     __obj.safe = __objSafe, __obj.escape = __escape;
-    return __out.join("");
+    return __out.join('');
   };
 });
