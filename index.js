@@ -1,15 +1,18 @@
-var _ = require('underscore');
-var eco = require('eco');
-var babel = require('cogs-transformer-babel');
+'use strict';
 
-var DEFAULTS = {
-  modules: 'umd'
+const _ = require('underscore');
+const eco = require('eco');
+
+const DEFAULTS = {
+  before: 'export default ',
+  after: ';\n'
 };
 
 module.exports = function (file, options, cb) {
-  var source = file.buffer.toString();
-  options = _.extend({}, DEFAULTS, options);
-  try { source = 'export default ' + eco.precompile(source); }
-  catch (er) { return cb(new Error(er)); }
-  babel(_.extend({}, file, {buffer: new Buffer(source)}), options, cb);
+  try {
+    let source = file.buffer.toString();
+    options = _.extend({}, DEFAULTS, options);
+    source = options.before + eco.precompile(source) + options.after;
+    cb(null, {buffer: new Buffer(source)});
+  } catch (er) { return cb(new Error(er)); }
 };

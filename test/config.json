@@ -1,8 +1,1 @@
-{
-  "in": {
-    "eco": {
-      "out": "js",
-      "transformers": "."
-    }
-  }
-}
+{"pipe": [{"name": ".", "only": "**/*.eco"}]}
